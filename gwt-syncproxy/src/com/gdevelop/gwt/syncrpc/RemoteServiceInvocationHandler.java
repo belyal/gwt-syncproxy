@@ -125,7 +125,7 @@ public class RemoteServiceInvocationHandler implements InvocationHandler {
 
 	public RemoteServiceInvocationHandler(HasProxySettings settings) {
 		this(settings.getModuleBaseUrl(), settings
-				.getRemoteServiceRelativePath(), settings.getPolicyName(),
+				.getRemoteServiceUrl(), settings.getPolicyName(),
 				settings.getCookieManager(), settings.isWaitForInvocation());
 		this.settings = settings;
 	}
@@ -267,7 +267,7 @@ public class RemoteServiceInvocationHandler implements InvocationHandler {
 			if (this.serviceEntryPoint.contains(this.settings
 					.getModuleBaseUrl())) {
 				this.settings
-						.setRemoteServiceRelativePath(this.serviceEntryPoint
+						.setRemoteServiceUrl(this.serviceEntryPoint
 								.split(this.settings.getModuleBaseUrl())[1]);
 			} else {
 				this.logger.warning("Unable to determine base (orig: "
@@ -320,7 +320,7 @@ public class RemoteServiceInvocationHandler implements InvocationHandler {
 		}
 		RemoteServiceSyncProxy syncProxy = new RemoteServiceSyncProxy(
 				this.settings.getModuleBaseUrl(),
-				this.settings.getRemoteServiceRelativePath(),
+				this.settings.getRemoteServiceUrl(),
 				this.settings.getPolicyName(),
 				this.settings.getCookieManager(), this.token,
 				this.rpcTokenExceptionHandler);

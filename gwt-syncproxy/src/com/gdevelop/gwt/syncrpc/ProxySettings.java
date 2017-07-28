@@ -56,7 +56,7 @@ public class ProxySettings implements HasProxySettings {
 	 * @return the remoteServiceRelativePath
 	 */
 	@Override
-	public String getRemoteServiceRelativePath() {
+	public String getRemoteServiceUrl() {
 		return this.remoteServiceRelativePath;
 	}
 
@@ -101,7 +101,7 @@ public class ProxySettings implements HasProxySettings {
 	 *            the remoteServiceRelativePath to set
 	 */
 	@Override
-	public ProxySettings setRemoteServiceRelativePath(
+	public ProxySettings setRemoteServiceUrl(
 			String remoteServiceRelativePath) {
 		this.remoteServiceRelativePath = remoteServiceRelativePath;
 		return this;

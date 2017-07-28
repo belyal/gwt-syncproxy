@@ -94,11 +94,11 @@ public class RemoteServiceSyncProxy implements SerializationStreamFactory {
 			.getName());
 
 	public RemoteServiceSyncProxy(String moduleBaseURL,
-			String remoteServiceRelativePath, String serializationPolicyName,
+			String remoteServiceURL, String serializationPolicyName,
 			CookieManager cookieManager, RpcToken rpcToken,
 			RpcTokenExceptionHandler rpcTokenExceptionHandler) {
 		this.moduleBaseURL = moduleBaseURL;
-		this.remoteServiceURL = moduleBaseURL + remoteServiceRelativePath;
+		this.remoteServiceURL = remoteServiceURL;
 		this.serializationPolicyName = serializationPolicyName;
 		this.cookieManager = cookieManager;
 		this.rpcToken = rpcToken;

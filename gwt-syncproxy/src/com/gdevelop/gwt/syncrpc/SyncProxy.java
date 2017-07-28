@@ -155,12 +155,12 @@ public class SyncProxy {
 			settings.setModuleBaseUrl(moduleBaseURL);
 		}
 		logger.finer("Server Base Url: " + settings.getModuleBaseUrl());
-		if (settings.getRemoteServiceRelativePath() == null) {
-			logger.config("Setting Service Relative Path by Annotation");
-			settings.setRemoteServiceRelativePath(getRemoteServiceRelativePathFromAnnotation(serviceIntf));
+		if (settings.getRemoteServiceUrl() == null) {
+			logger.config("Setting remote service url");
+			settings.setRemoteServiceUrl(remoteServiceURL);
 		}
-		logger.finer("Remote Service Relative path: "
-				+ settings.getRemoteServiceRelativePath());
+		logger.finer("Remote Service Url: "
+				+ settings.getRemoteServiceUrl());
 		if (settings.getPolicyName() == null) {
 			logger.config("Setting Policy Name by Map");
 			settings.setPolicyName(POLICY_MAP.get(serviceIntf.getName()));
@@ -316,7 +316,7 @@ public class SyncProxy {
 	 *         serviceIntf
 	 *
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)}
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)}
 	 */
 	@Deprecated
 	public static <ServiceIntf> ServiceIntf newProxyInstance(
@@ -340,7 +340,7 @@ public class SyncProxy {
 	 * @return A new proxy object which implements the service interface
 	 *         serviceIntf
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)}
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)}
 	 *             and {@link ProxySettings#setWaitForInvocation(boolean)}
 	 */
 	@Deprecated
@@ -375,7 +375,7 @@ public class SyncProxy {
 	 * @return A new proxy object which implements the service interface
 	 *         serviceIntf
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)}
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)}
 	 *             and {@link ProxySettings#setCookieManager(CookieManager)}
 	 */
 	@Deprecated
@@ -402,7 +402,7 @@ public class SyncProxy {
 	 * @return A new proxy object which implements the service interface
 	 *         serviceIntf
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)}
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)}
 	 *             and {@link ProxySettings#setPolicyName(String)}
 	 */
 	@Deprecated
@@ -415,7 +415,7 @@ public class SyncProxy {
 
 	/**
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)},
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)},
 	 *             {@link ProxySettings#setCookieManager(CookieManager)},
 	 *             {@link ProxySettings#policyName}
 	 */
@@ -447,7 +447,7 @@ public class SyncProxy {
 	 *         serviceIntf
 	 *
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)},
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)},
 	 *             {@link ProxySettings#setCookieManager(CookieManager)},
 	 *             {@link ProxySettings#policyName}, and
 	 *             {@link ProxySettings#setWaitForInvocation(boolean)}
@@ -465,7 +465,7 @@ public class SyncProxy {
 
 	/**
 	 * @deprecated since 0.5, {@link #createProxy(Class, ProxySettings)} with
-	 *             {@link ProxySettings#setRemoteServiceRelativePath(String)},
+	 *             {@link ProxySettings#setRemoteServiceUrl(String)},
 	 *             {@link ProxySettings#setCookieManager(CookieManager)},
 	 *             {@link ProxySettings#policyName}, and
 	 *             {@link ProxySettings#setWaitForInvocation(boolean)}
@@ -534,6 +534,10 @@ public class SyncProxy {
 			POLICY_MAP.clear();
 			POLICY_MAP.putAll(RpcPolicyFinder.searchPolicyFileInClassPath());
 		}
+	}
+
+	public static void setRemoteServiceURL(String remoteServiceUrl) {
+		remoteServiceURL = remoteServiceUrl;
 	}
 
 	/**
@@ -607,6 +611,8 @@ public class SyncProxy {
 	 * @since 0.5
 	 */
 	static protected String moduleBaseURL;
+
+	static protected String remoteServiceURL;
 
 	/**
 	 * Map from ServiceInterface class name to Serialization Policy name. By

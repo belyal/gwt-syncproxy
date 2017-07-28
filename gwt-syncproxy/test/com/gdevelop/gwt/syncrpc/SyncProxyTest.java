@@ -128,13 +128,13 @@ public class SyncProxyTest extends TestCase {
 			spe.verify(InfoType.REMOTE_SERVICE_RELATIVE_PATH);
 		}
 		String testRelativePath = "relativePath";
-		settings.setRemoteServiceRelativePath(testRelativePath);
+		settings.setRemoteServiceUrl(testRelativePath);
 		SyncProxy.defaultUnsetSettings(InnerNoAnnotTestService.class, settings);
 		assertEquals("Failed to utilized manual relative path",
-				testRelativePath, settings.getRemoteServiceRelativePath());
+				testRelativePath, settings.getRemoteServiceUrl());
 		SyncProxy.defaultUnsetSettings(InnerTestService.class, settings);
 		assertEquals("Failed to utilized manual relative path with annotation",
-				testRelativePath, settings.getRemoteServiceRelativePath());
+				testRelativePath, settings.getRemoteServiceUrl());
 		// Cookie manager should always be available
 		assertNotNull("Cookie manager should be default if not provided",
 				settings.getCookieManager());
@@ -149,7 +149,7 @@ public class SyncProxyTest extends TestCase {
 		assertEquals("Wrong policy for InnerTestService", itsPolicy,
 				settings.getPolicyName());
 		settings = new ProxySettings();
-		settings.setRemoteServiceRelativePath(testRelativePath);
+		settings.setRemoteServiceUrl(testRelativePath);
 		SyncProxy.defaultUnsetSettings(InnerNoAnnotTestService.class, settings);
 		assertEquals("Wrong policy for InnerNoAnnotTestService", inatsPolicy,
 				settings.getPolicyName());

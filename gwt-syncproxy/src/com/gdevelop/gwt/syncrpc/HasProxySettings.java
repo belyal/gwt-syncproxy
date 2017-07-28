@@ -25,7 +25,7 @@ public interface HasProxySettings {
 	/**
 	 * @return the remoteServiceRelativePath
 	 */
-	public String getRemoteServiceRelativePath();
+	public String getRemoteServiceUrl();
 
 	/**
 	 * @return the serverBaseUrl
@@ -53,7 +53,7 @@ public interface HasProxySettings {
 	 * @param remoteServiceRelativePath
 	 *            the remoteServiceRelativePath to set
 	 */
-	public HasProxySettings setRemoteServiceRelativePath(
+	public HasProxySettings setRemoteServiceUrl(
 			String remoteServiceRelativePath);
 
 	/**
